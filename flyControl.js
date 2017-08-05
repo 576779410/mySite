@@ -1,3 +1,32 @@
+var cameras = new Array()
+
+var begin = false
+
+function getCameraMatrix(camera) {
+    var cm = new Array()
+    cm[0] = camera.matrix.elements[0]
+    cm[1] = camera.matrix.elements[1]
+    cm[2] = camera.matrix.elements[2]
+    cm[3] = camera.matrix.elements[3]
+
+    cm[4] = camera.matrix.elements[4]
+    cm[5] = camera.matrix.elements[5]
+    cm[6] = camera.matrix.elements[6]
+    cm[7] = camera.matrix.elements[7]
+
+    cm[8] = camera.matrix.elements[8]
+    cm[9] = camera.matrix.elements[9]
+    cm[10] = camera.matrix.elements[10]
+    cm[11] = camera.matrix.elements[11]
+
+    cm[12] = camera.matrix.elements[12]
+    cm[13] = camera.matrix.elements[13]
+    cm[14] = camera.matrix.elements[14]
+    cm[15] = camera.matrix.elements[15]
+    return cm
+}
+
+
 function FlyControl(camera, scene, renderer) {
     function render() {
         renderer.render(scene, camera);
@@ -372,6 +401,15 @@ function FlyControl(camera, scene, renderer) {
             case "x":
                 isXDown = true;
                 break;
+            case "g":
+                begin = true
+                break;
+            case "h":
+                var cjson = JSON.stringify(cameras)
+                var xhr = new XMLHttpRequest()
+                xhr.open('POST','cameras')
+                xhr.send(cjson)
+                break;
         }
     }
 
@@ -430,51 +468,87 @@ function FlyControl(camera, scene, renderer) {
 
     function moveAndRotate() {
         if (isQDown) {
-            QKeyDown(camera);
+            QKeyDown(camera)
+            if (begin === true) {
+                cameras.push(getCameraMatrix(camera))
+            }
             requestAnimationFrame(render)
         }
         if (isWDown) {
             WKeyDown(camera);
+            if (begin === true) {
+                cameras.push(getCameraMatrix(camera))
+            }
             requestAnimationFrame(render)
         }
         if (isEDown) {
             EKeyDown(camera);
+            if (begin === true) {
+                cameras.push(getCameraMatrix(camera))
+            }
             requestAnimationFrame(render)
         }
         if (isADown) {
             AKeyDown(camera);
+            if (begin === true) {
+                cameras.push(getCameraMatrix(camera))
+            }
             requestAnimationFrame(render)
         }
         if (isSDown) {
             SKeyDown(camera);
+            if (begin === true) {
+                cameras.push(getCameraMatrix(camera))
+            }
             requestAnimationFrame(render)
         }
         if (isDDown) {
             DKeyDown(camera);
+            if (begin === true) {
+                cameras.push(getCameraMatrix(camera))
+            }
             requestAnimationFrame(render)
         }
         if (isUDown) {
             UKeyDown(camera);
+            if (begin === true) {
+                cameras.push(getCameraMatrix(camera))
+            }
             requestAnimationFrame(render)
         }
         if (isIDown) {
             IKeyDown(camera);
+            if (begin === true) {
+                cameras.push(getCameraMatrix(camera))
+            }
             requestAnimationFrame(render)
         }
         if (isODown) {
             OKeyDown(camera);
+            if (begin === true) {
+                cameras.push(getCameraMatrix(camera))
+            }
             requestAnimationFrame(render)
         }
         if (isJDown) {
             JKeyDown(camera);
+            if (begin === true) {
+                cameras.push(getCameraMatrix(camera))
+            }
             requestAnimationFrame(render)
         }
         if (isKDown) {
             KKeyDown(camera);
+            if (begin === true) {
+                cameras.push(getCameraMatrix(camera))
+            }
             requestAnimationFrame(render)
         }
         if (isLDown) {
             LKeyDown(camera);
+            if (begin === true) {
+                cameras.push(getCameraMatrix(camera))
+            }
             requestAnimationFrame(render)
         }
         if (isZDown) {
